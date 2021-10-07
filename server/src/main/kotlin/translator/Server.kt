@@ -21,10 +21,18 @@ import org.springframework.xml.xsd.SimpleXsdSchema
 /** The namespace of the payload root element. */
 private const val TRANSLATOR_NAMESPACE_URI = "http://translator/web/ws/schema"
 
-/** The translator endpoint. */
+/**
+ * The translator endpoint, which is reached by the [MessageDispatcherServlet] when incoming XML are
+ * received
+ */
 @Endpoint
 class TranslatorEndpoint {
+    /** [localpart]: specifies what kind of XML messages are handled by the endpoint */
     @PayloadRoot(namespace = TRANSLATOR_NAMESPACE_URI, localPart = "TranslationRequest")
+    /**
+     * Receives [request] and translate [request.text] in order to send the translation back to the
+     * client as a [resp]
+     */
     @ResponsePayload
     fun translation(@RequestPayload request: TranslationRequest): TranslationResponse {
         var resp = TranslationResponse()
