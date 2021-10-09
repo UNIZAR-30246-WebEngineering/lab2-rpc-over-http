@@ -4,12 +4,11 @@ Please, go to the [Wiki](https://github.com/UNIZAR-30246-WebEngineering/lab2-rpc
 
 ## Primary goal
 
-Discover how to run the `server` and the `client`.
-Note that the `server` requires code derived from `translator.xsd`,
-and the `client` requires code derived from a `wsdl` file published by the `server`.
+Discover how to run the `server` and the `client`. 
+Note that the `server` requires code derived from `translator.xsd`, 
+and the `client` requires code derived from a `wsdl` file published by the `server`. 
 
 Next you must ensure that the client show something similar to:
-
 ```
 Result of translating [hello] is [hola].
 ```
@@ -25,8 +24,8 @@ Some ideas for obtaining a :gift: if you are the first that:
 - **Do the Google way**: Re-implement the project with [gRPC](https://yidongnan.github.io/grpc-spring-boot-starter/en/)
 - **Do the Facebook way**: Re-implement the project with [GraphQL](https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/)
 
-| User name                                                                                        | NIA      | CI                                                                                                                                                                                                                  | Solution                                                                                | Score |
-| ------------------------------------------------------------------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ----- |
-| [UNIZAR-30246-WebEngineering](https://github.com/UNIZAR-30246-WebEngineering/lab2-rpc-over-http) | 30246    | [![Build Status](https://github.com/UNIZAR-30246-WebEngineering/lab2-rpc-over-http/actions/workflows/ci.yml/badge.svg)](https://github.com/UNIZAR-30246-WebEngineering/lab2-rpc-over-http/actions/workflows/ci.yml) | [instructions](https://github.com/UNIZAR-30246-WebEngineering/lab2-rpc-over-http/wiki)  |
-| your name                                                                                        | your nia | your CI status                                                                                                                                                                                                      | your solution                                                                           |
-| [Jorge Laguna](https://github.com/topopelon/lab2-rpc-over-http/tree/work)                        | 735550   | [![Build Status](https://github.com/topopelon/lab2-rpc-over-http/actions/workflows/ci.yml/badge.svg)](https://github.com/topopelon/lab2-rpc-over-http/actions/workflows/ci.yml)                                     | [description](https://github.com/topopelon/lab2-rpc-over-http/blob/main/description.md) |
+User name | NIA | CI | Solution |Score
+----------|-----|----------|-----|----
+[UNIZAR-30246-WebEngineering](https://github.com/UNIZAR-30246-WebEngineering/lab2-rpc-over-http) |30246 | [![Build Status](https://github.com/UNIZAR-30246-WebEngineering/lab2-rpc-over-http/actions/workflows/ci.yml/badge.svg)](https://github.com/UNIZAR-30246-WebEngineering/lab2-rpc-over-http/actions/workflows/ci.yml) | [instructions](https://github.com/UNIZAR-30246-WebEngineering/lab2-rpc-over-http/wiki)
+your name | your nia | your CI status | your solution
+[Jorge Laguna](https://github.com/topopelon/lab2-rpc-over-http/tree/work) | 735550 | [![Build Status](https://github.com/topopelon/lab2-rpc-over-http/actions/workflows/ci.yml/badge.svg)](https://github.com/topopelon/lab2-rpc-over-http/actions/workflows/ci.yml) | [description](https://github.com/topopelon/lab2-rpc-over-http/blob/main/description.md)
