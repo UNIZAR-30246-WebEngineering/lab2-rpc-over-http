@@ -32,7 +32,7 @@ class TranslatorEndpoint {
     @ResponsePayload
     fun translation(@RequestPayload request: TranslationRequest): TranslationResponse = 
         TranslationResponse().apply {
-            translation = "Coche"
+            translation = "¡Tradúceme!"
         }
 }
 
