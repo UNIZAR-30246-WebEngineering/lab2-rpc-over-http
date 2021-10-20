@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://translator/web/ws/schema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://translator/web/ws/schema" targetNamespace="http://translator/web/ws/schema">
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://translator/web/ws/schema">
+
+    <xsd:element name="TranslationRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="langFrom" type="xsd:string"/>
+                <xsd:element name="langTo" type="xsd:string"/>
+                <xsd:element name="text" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="TranslationResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="translation" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="TranslationResponse">
+    <wsdl:part element="tns:TranslationResponse" name="TranslationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TranslationRequest">
+    <wsdl:part element="tns:TranslationRequest" name="TranslationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TranslationPort">
+    <wsdl:operation name="Translation">
+      <wsdl:input message="tns:TranslationRequest" name="TranslationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:TranslationResponse" name="TranslationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TranslationPortSoap11" type="tns:TranslationPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Translation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="TranslationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TranslationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TranslationPortService">
+    <wsdl:port binding="tns:TranslationPortSoap11" name="TranslationPortSoap11">
+      <soap:address location="http://localhost:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
