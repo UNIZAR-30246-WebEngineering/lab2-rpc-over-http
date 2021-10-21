@@ -53,52 +53,17 @@ project(":server") {
     dependencies {
         "implementation"("org.springframework.boot:spring-boot-starter-web")
         "implementation"("org.springframework.boot:spring-boot-starter-web-services")
+        "testImplementation" ("junit:junit:4.12")
         "implementation"("wsdl4j:wsdl4j")
+        "implementation"("com.graphql-java:graphql-java:11.0")
+        "implementation"("com.graphql-java:graphql-java-spring-boot-starter-webmvc:1.0")
+        "implementation" ("com.google.guava:guava:26.0-jre")
         "runtimeOnly"("org.glassfish.jaxb:jaxb-runtime")
-        jaxb("com.sun.xml.bind:jaxb-xjc:2.1.7")
-        "implementation"(files(layout.buildDirectory.dir("classes/xjc")) {
-            builtBy("genJaxb")
-        })
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+
     }
 
-    task("genJaxb") {
-        val sourcedestdir = file(generatedJavaDirs)
-        val classesdestdir = file(generatedClassesDirs)
 
-        doLast {
-            sourcedestdir.mkdirs()
-            classesdestdir.mkdirs()
-            ant.withGroovyBuilder {
-                "taskdef"(
-                    "name" to "xjc",
-                    "classname" to "com.sun.tools.xjc.XJCTask",
-                    "classpath" to jaxb.asPath
-                )
-
-                "xjc"(
-                    "destdir" to sourcedestdir,
-                    "schema" to schema,
-                    "package" to "client.translator"
-                )
-
-                "javac"(
-                    "destdir" to generatedClassesDirs,
-                    "source" to 1.8,
-                    "target" to 1.8,
-                    "debug" to true,
-                    "debugLevel" to "lines,vars,source",
-                    "classpath" to jaxb.asPath
-                ) {
-                    "src"("path" to sourcedestdir)
-                    "include"("name" to "**/*.java")
-                    "include"("name" to "*.java")
-                }
-            }
-        }
-    }
-    tasks.withType<KotlinCompile> {
-        dependsOn("genJaxb")
-    }
     java {
         sourceSets {
             getByName("main").java.srcDirs(generatedJavaDirs)
@@ -106,101 +71,3 @@ project(":server") {
     }
 }
 
-project(":client") {
-
-    val generatedJavaDirs = "$buildDir/generated-sources/xjc"
-    val generatedClassesDirs = "$buildDir/classes/xjc"
-    val generatedResourceDirs = "$buildDir/generated-sources/resources"
-    val metaInfDir = "$generatedResourceDirs/META-INF"
-    val wsdlDir = "$metaInfDir/wsdl"
-    val catalogFile = "$metaInfDir/jax-ws-catalog.xml"
-    val translatorWsdlFile = "$wsdlDir/translator.wsdl"
-    val translatorResourceWsdl = "wsdl/translator.wsdl"
-    val serverWsdlLocation = "http://localhost:8080/ws/translator.wsdl"
-    val jaxb by configurations.creating
-
-    dependencies {
-        "implementation"("org.springframework.boot:spring-boot-starter-web-services") {
-            exclude("org.springframework.boot", "spring-boot-starter-tomcat")
-        }
-        "implementation"("org.springframework.ws:spring-ws-core")
-        "implementation"("org.glassfish.jaxb:jaxb-runtime")
-        jaxb("com.sun.xml.bind:jaxb-xjc:2.1.7")
-        "implementation"(files(layout.buildDirectory.dir("classes/xjc")) {
-            builtBy("genJaxb")
-        })
-    }
-
-    /**
-     * It is common that the remote wsdl location is hardcoded into the code.
-     * As the wsdl location may be not available, we use the JAXWS catalog to map
-     * this remote resource to a local copy.
-     */
-    task("create-catalog") {
-        val file = file(catalogFile)
-        file.parentFile.mkdirs()
-        file.writeText(
-            """
-            <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-             <system systemId="$serverWsdlLocation" uri="$translatorResourceWsdl"/>
-            </catalog>
-        """.trimIndent()
-        )
-    }
-
-    task<Download>("download-wsdl") {
-        val file = file(translatorWsdlFile)
-        file.parentFile.mkdirs()
-        src(serverWsdlLocation)
-        dest(file)
-        overwrite(true)
-    }
-
-    task("genJaxb") {
-        dependsOn("download-wsdl", "create-catalog")
-        group = BasePlugin.BUILD_GROUP
-        val sourcedestdir = file(generatedJavaDirs)
-        val classesdestdir = file(generatedClassesDirs)
-
-        doLast {
-            sourcedestdir.mkdirs()
-            classesdestdir.mkdirs()
-            ant.withGroovyBuilder {
-                "taskdef"(
-                    "name" to "xjc",
-                    "classname" to "com.sun.tools.xjc.XJCTask",
-                    "classpath" to jaxb.asPath
-                )
-
-                "xjc"(
-                    "destdir" to sourcedestdir,
-                    "schema" to serverWsdlLocation,
-                    "package" to "client.translator"
-                ) {
-                    "arg"("value" to "-wsdl")
-                }
-                "javac"(
-                    "destdir" to generatedClassesDirs,
-                    "source" to 1.8,
-                    "target" to 1.8,
-                    "debug" to true,
-                    "debugLevel" to "lines,vars,source",
-                    "classpath" to jaxb.asPath
-                ) {
-                    "src"("path" to sourcedestdir)
-                    "include"("name" to "**/*.java")
-                    "include"("name" to "*.java")
-                }
-            }
-        }
-    }
-    tasks.withType<KotlinCompile> {
-        dependsOn("genJaxb")
-    }
-    java {
-        sourceSets {
-            getByName("main").java.srcDirs(generatedJavaDirs)
-            getByName("main").resources.srcDirs(generatedResourceDirs)
-        }
-    }
-}

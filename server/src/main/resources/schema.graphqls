@@ -1,0 +1,19 @@
+schema {
+    query: Query
+}
+
+type Query {
+    "TranslationRequest"
+    TranslationRequest(
+        "Original languaje of the text (only spanish or english)"
+        langFrom: String,
+        "Desired Languaje in which the text will be translated to (only spanish or english)"
+        langTo: String,
+        "The content to be translated"
+        text: String
+    ): TranslationResponse
+}
+
+type TranslationResponse {
+    translation: String
+}
