@@ -21,7 +21,6 @@ Some ideas for obtaining a :gift: if you are the first that:
 - **Back to the future**: Upgrade to WSDL 2.0 and SOAP 1.2
 - **Armored SOAP**: Secure the endpoint [WS-Security](https://docs.spring.io/spring-ws/docs/3.1.1/reference/html/#security)
 - **Let's contract**: Re-implement the project following [Writing Contract-First Web Services tutorial](https://docs.spring.io/spring-ws/docs/3.1.1/reference/html/#tutorial)
-- **Do the Google way**: Re-implement the project with [gRPC](https://yidongnan.github.io/grpc-spring-boot-starter/en/)
 
 User name | NIA | CI | Solution |Score
 ----------|-----|----------|-----|----
@@ -48,4 +47,4 @@ User name | NIA | CI | Solution |Score
 [Sergio Benítez Mombiela](https://github.com/SergioBenitez755787/lab2-rpc-over-http/tree/work) | 755787 | [![Build Status](https://github.com/SergioBenitez755787/lab2-rpc-over-http/actions/workflows/ci.yml/badge.svg)](https://github.com/SergioBenitez755787/lab2-rpc-over-http/actions/workflows/ci.yml) | [solution](https://github.com/SergioBenitez755787/lab2-rpc-over-http/blob/work/solution.md)
 [Alvaro Echavarri](https://github.com/aechavarris/lab2-rpc-over-http) |737400 | [![Build Status](https://github.com/aechavarris/lab2-rpc-over-http/actions/workflows/ci.yml/badge.svg)](https://github.com/aechavarris/lab2-rpc-over-http/actions/workflows/ci.yml) | [explanation](https://github.com/aechavarris/lab2-rpc-over-http/blob/work/explanation.md)
 [Felipe Nonay](https://github.com/Keyleth8/lab2-rpc-over-http/tree/work) | 734941 | [![Build Status](https://github.com/Keyleth8/lab2-rpc-over-http/actions/workflows/ci.yml/badge.svg)](https://github.com/fnonay/lab2-rpc-over-http/actions/workflows/ci.yml) | [solution](https://github.com/fnonay/lab2-rpc-over-http/blob/work/solution.md)
-[Binhui Chen Zhou](https://github.com/779799/lab2-rpc-over-http/tree/work) | 779799 | [![Build Status](https://github.com/779799/lab2-rpc-over-http/actions/workflows/ci.yml/badge.svg)](https://github.com/779799/lab2-rpc-over-http/actions/workflows/ci.yml) | [Solution](https://github.com/779799/lab2-rpc-over-http/blob/work/SOLUTION.md) | [**Do the Google way**](https://github.com/779799/lab2-rpc-over-http/tree/gift)
+[Binhui Chen Zhou](https://github.com/779799/lab2-rpc-over-http/tree/work) | 779799 | [![Build Status](https://github.com/779799/lab2-rpc-over-http/actions/workflows/ci.yml/badge.svg)](https://github.com/779799/lab2-rpc-over-http/actions/workflows/ci.yml) | [Solution](https://github.com/779799/lab2-rpc-over-http/blob/work/SOLUTION.md) | [**Do the Google way**](https://github.com/779799/lab2-rpc-over-http/tree/gift) :gift:
